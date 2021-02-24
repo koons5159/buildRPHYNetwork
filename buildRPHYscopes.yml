@@ -5,9 +5,6 @@
   gather_facts: false
   tasks:
 
-    - name: Include Default Variables
-      include_vars: "rphydhcpvars.yml"
-
     - name: Get Timestamp from system
       shell: "date +%Y-%m-%d"
       register: tstamp
@@ -17,7 +14,7 @@
        cur_date: "{{ tstamp.stdout[0:10]}}"
 
     - name: parse csv and make vars file
-      command: "python3 /etc/ansible/scripts/dhcpscopes_csv_to_yaml.py {{source_csv_prefix}}.csv"
+      command: "python3 scripts/dhcpscopes_csv_to_yaml.py {{source_csv_prefix}}.csv"
 
     - name: Include source yaml file
       include_vars: "{{source_csv_prefix}}.csv.yml"
