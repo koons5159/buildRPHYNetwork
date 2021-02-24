@@ -23,11 +23,9 @@
     - name: Build DHCP Config file
       template:
           src=templates/rphydhcpscopes.j2
-          dest=configs/dhcp-{{source_csv_prefix}}.conf
-      register: "dhcp-{{source_csv_prefix}}.conf"
+      register: "dhcp-output.conf"
     
     - name: Build CIN Leaf Config file
       template:
           src=templates/rphycin-leaf.j2
-          dest=configs/{{source_csv_prefix}}.conf
-      register: "{{source_csv_prefix}}.conf"
+      register: "cin-network.conf"
