@@ -1,0 +1,34 @@
+---
+- hosts: localhost
+  connection: local
+  become: false
+  gather_facts: false
+  tasks:
+
+    - name: Include Default Variables
+      include_vars: "rphydhcpvars.yml"
+
+    - name: Get Timestamp from system
+      shell: "date +%Y-%m-%d"
+      register: tstamp
+
+    - name: set facts
+      set_fact:
+       cur_date: "{{ tstamp.stdout[0:10]}}"
+
+    - name: parse csv and make vars file
+      command: "python3 /etc/ansible/scripts/dhcpscopes_csv_to_yaml.py {{source_csv_prefix}}.csv"
+
+    - name: Include source yaml file
+      include_vars: "{{source_csv_prefix}}.csv.yml"
+
+
+    - name: Build DHCP Config file
+      template:
+          src=templates/rphydhcpscopes.j2
+          dest=configs/dhcp-{{source_csv_prefix}}.conf
+    
+    - name: Build CIN Leaf Config file
+      template:
+          src=templates/rphycin-leaf.j2
+          dest=configs/{{source_csv_prefix}}.conf 
