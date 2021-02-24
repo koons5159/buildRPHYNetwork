@@ -1,0 +1,17 @@
+{#This tempate will build the config file for the RPHY DHCP Server #}
+#File created {{cur_date}} by {{lasteditby}}
+{% for row in csv_data %}
+# {{row.prefix}} Subnet
+# {{row.description}}
+subnet {{row.prefix | ipaddr('network')}} netmask {{row.prefix | ipaddr('netmask') }} {
+        option subnet-mask      {{row.prefix | ipaddr('netmask')}};
+        option domain-search "sectv.com";
+        option routers  {{row.prefix | next_nth_usable(1)}};
+        option broadcast-address {{row.prefix | ipaddr('broadcast')}};
+        pool {
+        range {{ row.prefix | next_nth_usable(4) }} {{ row.prefix | ipaddr('last_usable') }};
+        allow members of "Inode";
+        allow members of "CiscoRPD";
+        }
+}
+{% endfor -%}  
