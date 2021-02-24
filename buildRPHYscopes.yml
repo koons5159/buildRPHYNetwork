@@ -23,9 +23,9 @@
     - name: Build DHCP Config file
       template:
           src=templates/rphydhcpscopes.j2
-      register: "dhcp-output.conf"
+      register: dhcp-output.conf
     
     - name: Build CIN Leaf Config file
       template:
           src=templates/rphycin-leaf.j2
-      register: "cin-network.conf"
+      register: cin-network.conf
