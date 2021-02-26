@@ -35,6 +35,7 @@
         port: 587
         username: "{{emailuser}}"
         password: "{{mysecret}}"
+        from: "{{emailuser}}"
         to: "{{toemail}}"
         subject: Test
         body: 'RPHY Emal Test.'
