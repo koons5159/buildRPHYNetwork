@@ -1,6 +1,5 @@
 ---
 - hosts: "{{remote_host}}"
-  connection: local
   become: false
   gather_facts: false
   tasks:
