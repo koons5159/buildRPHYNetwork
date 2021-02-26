@@ -33,9 +33,9 @@
     - mail:
       host: mail.sectv.com
       port: 587
-      username: {{emailuser}}
-      password: {{mysecret}}
-      to: {{toemail}}
+      username: "{{emailuser}}"
+      password: "{{mysecret}}"
+      to: "{{toemail}}"
       subject: Ansible-report
       body: 'System {{ ansible_hostname }} has been successfully provisioned.'
       delegate_to: localhost
