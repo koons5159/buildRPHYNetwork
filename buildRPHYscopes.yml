@@ -36,6 +36,5 @@
         username: "{{emailuser}}"
         password: "{{mysecret}}"
         to: "{{toemail}}"
-        subject: Ansible-report
+        subject: Test
         body: 'RPHY Emal Test.'
-        delegate_to: localhost
