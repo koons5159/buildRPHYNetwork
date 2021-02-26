@@ -31,11 +31,11 @@
           dest=configs/{{source_csv_prefix}}.conf
 
     - mail:
-      host: mail.sectv.com
-      port: 587
-      username: "{{emailuser}}"
-      password: "{{mysecret}}"
-      to: "{{toemail}}"
-      subject: Ansible-report
-      body: 'System {{ ansible_hostname }} has been successfully provisioned.'
-      delegate_to: localhost
+        host: mail.sectv.com
+        port: 587
+        username: "{{emailuser}}"
+        password: "{{mysecret}}"
+        to: "{{toemail}}"
+        subject: Ansible-report
+        body: 'System {{ ansible_hostname }} has been successfully provisioned.'
+        delegate_to: localhost
