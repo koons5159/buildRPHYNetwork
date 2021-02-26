@@ -23,12 +23,12 @@
     - name: Build DHCP Config file
       template:
           src=templates/rphydhcpscopes.j2
-          dest=configs/dhcp-{{source_csv_prefix}}.conf
+          dest=configs/dhcp-{{source_csv_prefix}}.txt
  
     - name: Build CIN Leaf Config file
       template:
           src=templates/rphycin-leaf.j2
-          dest=configs/{{source_csv_prefix}}.conf
+          dest=configs/{{source_csv_prefix}}.txt
 
     - mail:
         host: mail.sectv.com
@@ -39,4 +39,4 @@
         to: "{{toemail}}"
         subject: Test
         body: 'RPHY Emal Test.'
-        attach: configs/{{source_csv_prefix}}.conf
+        attach: configs/{{source_csv_prefix}}.txt configs/dhcp-{{source_csv_prefix}}.txt
