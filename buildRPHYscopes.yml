@@ -31,10 +31,8 @@
           dest=configs/{{source_csv_prefix}}.txt
 
     - mail:
-        host: mail.sectv.com
-        port: 587
-        username: "{{emailuser}}"
-        password: "{{mysecret}}"
+        host: smtp.eng.sectv.com
+        port: 25
         from: "{{emailuser}}"
         to: "{{toemail}}"
         subject: Test
