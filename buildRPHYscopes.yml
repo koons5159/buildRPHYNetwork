@@ -29,6 +29,16 @@
       template:
           src=templates/rphycin-leaf.j2
           dest=configs/{{source_csv_prefix}}.txt
+          
+    - name: Build PHP IPAM Subnet Import file
+      template:
+          src=templates/phpipam_subnet.j2
+          dest=configs/{{source_csv_prefix}}-subnet.csv 
+
+    - name: Build PHP IPAM IP Address Import file
+      template:
+          src=templates/phpipam_ipaddress.j2
+          dest=configs/{{source_csv_prefix}}-ipaddress.csv
 
     - mail:
         host: "{{smtphost}}"
@@ -40,3 +50,5 @@
         attach:
         - configs/dhcp-{{source_csv_prefix}}.txt
         - configs/{{source_csv_prefix}}.txt
+        - configs/{{source_csv_prefix}}-subnet.csv
+        - configs/{{source_csv_prefix}}-ipaddress.csv
