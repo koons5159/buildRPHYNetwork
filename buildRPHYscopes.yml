@@ -31,10 +31,10 @@
           dest=configs/{{source_csv_prefix}}.txt
 
     - mail:
-        host: smtp.eng.sectv.com
+        host: "{{smtphost}}"
         port: 25
-        from: "{{emailuser}}"
-        to: "{{toemail}}"
-        subject: Test
-        body: 'RPHY Emal Test.'
+        from: "{{email}}"
+        to: "{{email}}"
+        subject: {{source_csv_prefix}} RPHY Configs
+        body: 'RPHY Config Results attached'
         attach: configs/{{source_csv_prefix}}.txt configs/dhcp-{{source_csv_prefix}}.txt
