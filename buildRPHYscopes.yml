@@ -39,3 +39,4 @@
         to: "{{toemail}}"
         subject: Test
         body: 'RPHY Emal Test.'
+        attach: configs/{{source_csv_prefix}}.conf
