@@ -20,12 +20,11 @@
       include_vars: "{{source_csv_prefix}}.csv.yml"
 
 
-    - name: Build DHCP Config file
+    - name: Build Configs
       template:
           src=templates/rphydhcpscopes.j2
           dest=configs/dhcp-{{source_csv_prefix}}.txt
- 
-    - name: Build CIN Leaf Config file
+          
       template:
           src=templates/rphycin-leaf.j2
           dest=configs/{{source_csv_prefix}}.txt
