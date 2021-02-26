@@ -20,11 +20,12 @@
       include_vars: "{{source_csv_prefix}}.csv.yml"
 
 
-    - name: Build Configs
+    - name: Build DHCP Scope Configs
       template:
           src=templates/rphydhcpscopes.j2
           dest=configs/dhcp-{{source_csv_prefix}}.txt
           
+    - name: Build CIN Leaf Switch Configs      
       template:
           src=templates/rphycin-leaf.j2
           dest=configs/{{source_csv_prefix}}.txt
@@ -36,4 +37,4 @@
         to: "{{email}}"
         subject: "{{source_csv_prefix}} RPHY Configs"
         body: 'RPHY Config Results attached'
-        attach: "configs/{{source_csv_prefix}}.txt configs/dhcp-{{source_csv_prefix}}.txt"
+        attach: configs/dhcp-{{source_csv_prefix}}.txt
