@@ -37,5 +37,5 @@
         password: "{{mysecret}}"
         to: "{{toemail}}"
         subject: Ansible-report
-        body: 'System {{ ansible_hostname }} has been successfully provisioned.'
+        body: 'RPHY Emal Test.'
         delegate_to: localhost
