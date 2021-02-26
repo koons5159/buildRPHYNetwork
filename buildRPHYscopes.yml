@@ -35,6 +35,6 @@
         port: 25
         from: "{{email}}"
         to: "{{email}}"
-        subject: "{{source_csv_prefix}}" RPHY Configs
+        subject: "{{source_csv_prefix}} RPHY Configs"
         body: 'RPHY Config Results attached'
-        attach: configs/"{{source_csv_prefix}}".txt configs/dhcp-"{{source_csv_prefix}}".txt
+        attach: "configs/{{source_csv_prefix}}.txt configs/dhcp-{{source_csv_prefix}}.txt"
