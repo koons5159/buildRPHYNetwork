@@ -23,13 +23,9 @@
     - name: Build DHCP Config file
       template:
           src=templates/rphydhcpscopes.j2
-          dest=dhcp-{{source_csv_prefix}}.conf
-      register: dhcpoutput
+          dest=/home/koons/dhcp-{{source_csv_prefix}}.conf
  
     - name: Build CIN Leaf Config file
       template:
           src=templates/rphycin-leaf.j2
-          dest={{source_csv_prefix}}.conf 
-      register: cinoutput
-      
-    - debug: var=dhcpoutput
+          dest=/home/koons/{{source_csv_prefix}}.conf
