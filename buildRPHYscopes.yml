@@ -1,5 +1,6 @@
 ---
-- hosts: "{{remote_host}}"
+- hosts: localhost
+  connection: local
   become: false
   gather_facts: false
   tasks:
@@ -22,9 +23,19 @@
     - name: Build DHCP Config file
       template:
           src=templates/rphydhcpscopes.j2
-          dest=/home/koons/dhcp-{{source_csv_prefix}}.conf
+          dest=configs/dhcp-{{source_csv_prefix}}.conf
  
     - name: Build CIN Leaf Config file
       template:
           src=templates/rphycin-leaf.j2
-          dest=/home/koons/{{source_csv_prefix}}.conf
+          dest=configs/{{source_csv_prefix}}.conf
+
+    - mail:
+      host: mail.sectv.com
+      port: 587
+      username: {{emailuser}}
+      password: {{mysecret}}
+      to: {{toemail}}
+      subject: Ansible-report
+      body: 'System {{ ansible_hostname }} has been successfully provisioned.'
+      delegate_to: localhost
