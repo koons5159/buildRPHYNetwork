@@ -1,7 +1,7 @@
 section,ip address,ip state,description,hostname,subnet
 {% for row in csv_data %}
-SECTV,{{row.subnet | next_nth_usable(1)}},,{{row.primarydevice}}/{{row.backupdevice}} {{row.cinint}} ,{{row.subnet}}
+SECTV,{{row.subnet | next_nth_usable(1)}},,{{row.primarydevice}}/{{row.backupdevice}} {{row.cinint}},,{{row.subnet}}
 {% endfor -%}  
 {% for row in csv_data %}
-SECTV,{{row.subnet | next_nth_usable(2)}},,{{cbr8name}} {{row.primdpicint}}/{{row.backdpicint}} ,{{row.subnet}}
+SECTV,{{row.subnet | next_nth_usable(2)}},,{{cbr8name}} {{row.primdpicint}}/{{row.backdpicint}},,{{row.subnet}}
 {% endfor -%}  
