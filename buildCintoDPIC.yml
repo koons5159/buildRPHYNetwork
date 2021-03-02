@@ -32,7 +32,7 @@
           
     - name: Build PHP IPAM Subnet Import file
       template:
-          src=templates/phpipam_subnet.j2
+          src=templates/phpipam_dpic_subnet.j2
           dest=configs/{{source_csv_prefix}}-subnet.csv 
 
     - name: Build PHP IPAM IP Address Import file
