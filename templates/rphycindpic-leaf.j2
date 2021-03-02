@@ -3,7 +3,7 @@
 {# Configure interfaces on Primary CIN Device#}
 ##--Primary CIN Device--##
 {% for row in csv_data %}
-interface {{row.interface}}  
+interface {{row.cinint}}  
 description {{cbr8name}} {{row.primdpicint}}
 cdp
 mtu 9200
@@ -14,7 +14,7 @@ load-interval 30
 
 ##--Backup CIN Device--##
 {% for row in csv_data %}
-interface {{row.interface}}  
+interface {{row.cinint}}  
 description {{cbr8name}} {{row.backdpicint}}
 cdp
 mtu 9200
