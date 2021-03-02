@@ -14,7 +14,7 @@
        cur_date: "{{ tstamp.stdout[0:10]}}"
 
     - name: parse csv and make vars file
-      command: "python3 scripts/dhcpscopes_csv_to_yaml.py {{source_csv_prefix}}.csv"
+      command: "python3 scripts/rphydpic_csv_to_yaml.py {{source_csv_prefix}}.csv"
 
     - name: Include source yaml file
       include_vars: "{{source_csv_prefix}}.csv.yml"
