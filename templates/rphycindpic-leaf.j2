@@ -4,7 +4,18 @@
 ##--Primary CIN Device--##
 {% for row in csv_data %}
 interface {{row.interface}}  
-description {{cbr8name}} {{row.description}}
+description {{cbr8name}} {{row.primdpicint}}
+cdp
+mtu 9200
+ipv4 address {{row.prefix | next_nth_usable(1)}}  {{row.prefix | ipaddr('netmask')}}
+load-interval 30
+!
+{% endfor -%}
+
+##--Backup CIN Device--##
+{% for row in csv_data %}
+interface {{row.interface}}  
+description {{cbr8name}} {{row.backdpicint}}
 cdp
 mtu 9200
 ipv4 address {{row.prefix | next_nth_usable(1)}}  {{row.prefix | ipaddr('netmask')}}
