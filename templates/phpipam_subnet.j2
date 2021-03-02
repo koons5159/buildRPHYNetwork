@@ -1,4 +1,4 @@
-Section,Subnet,Description,VLAN,VLAN Domain,VRF,Master Subnet
+Section,Subnet,Description,VLAN,VLAN Domain,VRF
 {% for row in csv_data %}
-SECTV,{{row.prefix}},{{row.description}},,,,{{mastersubnet}}
+SECTV,{{row.prefix}},{{row.description}},,,
 {% endfor -%}  
