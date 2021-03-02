@@ -20,15 +20,15 @@
       include_vars: "{{source_csv_prefix}}.csv.yml"
 
 
-    - name: Build DHCP Scope Configs
+    - name: Build CBR8 Configs
       template:
-          src=templates/rphydpic.j2
-          dest=configs/cbr8DPIC-{{source_csv_prefix}}.txt
+          src=templates/rphycbr8.j2
+          dest=configs/cbr8-{{source_csv_prefix}}.txt
           
-    - name: Build CIN Leaf Switch Configs      
+    - name: Build CIN Leaf to DPIC Switch Configs      
       template:
-          src=templates/rphycin-leaf.j2
-          dest=configs/{{source_csv_prefix}}.txt
+          src=templates/rphycindpic-leaf.j2
+          dest=configs/cindpic-{{source_csv_prefix}}.txt
           
     - name: Build PHP IPAM Subnet Import file
       template:
@@ -48,7 +48,7 @@
         subject: "{{source_csv_prefix}} RPHY Configs"
         body: 'RPHY Config Results attached'
         attach:
-        - configs/dhcp-{{source_csv_prefix}}.txt
-        - configs/{{source_csv_prefix}}.txt
+        - configs/cbr8-{{source_csv_prefix}}.txt
+        - configs/cindpic-{{source_csv_prefix}}.txt
         - configs/{{source_csv_prefix}}-subnet.csv
         - configs/{{source_csv_prefix}}-ipaddress.csv
