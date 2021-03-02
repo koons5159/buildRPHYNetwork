@@ -37,7 +37,7 @@
 
     - name: Build PHP IPAM IP Address Import file
       template:
-          src=templates/phpipam_ipaddress.j2
+          src=templates/phpipam_dpic_ipaddress.j2
           dest=configs/{{source_csv_prefix}}-ipaddress.csv
 
     - mail:
