@@ -14,14 +14,14 @@ vrf definition {{row.vrf}}
 interface {{row.primdpicint}}
 description 10GB Link to {{row.primarydevice}} {{row.primdpicint}}
 vrf forwarding {{row.vrf}}
-ip address {{row.prefix | next_nth_usable(1)}} {{row.prefix | ipaddr('netmask')}}
+ip address {{row.prefix | next_nth_usable(2)}} {{row.prefix | ipaddr('netmask')}}
 cdp enable
 !
 {#Build all the Backup DPIC interfaces(Odds)#}
 interface {{row.backdpicint}}
 description 10GB Link to {{row.primarydevice}} {{row.backdpicint}}
 vrf forwarding {{row.vrf}}
-ip address {{row.prefix | next_nth_usable(1)}} {{row.prefix | ipaddr('netmask')}}
+ip address {{row.prefix | next_nth_usable(2)}} {{row.prefix | ipaddr('netmask')}}
 cdp enable
 !
 {% endfor -%}  
