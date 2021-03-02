@@ -1,1 +1,54 @@
+---
+- hosts: localhost
+  connection: local
+  become: false
+  gather_facts: false
+  tasks:
 
+    - name: Get Timestamp from system
+      shell: "date +%Y-%m-%d"
+      register: tstamp
+
+    - name: set facts
+      set_fact:
+       cur_date: "{{ tstamp.stdout[0:10]}}"
+
+    - name: parse csv and make vars file
+      command: "python3 scripts/dhcpscopes_csv_to_yaml.py {{source_csv_prefix}}.csv"
+
+    - name: Include source yaml file
+      include_vars: "{{source_csv_prefix}}.csv.yml"
+
+
+    - name: Build DHCP Scope Configs
+      template:
+          src=templates/rphydpic.j2
+          dest=configs/cbr8DPIC-{{source_csv_prefix}}.txt
+          
+    - name: Build CIN Leaf Switch Configs      
+      template:
+          src=templates/rphycin-leaf.j2
+          dest=configs/{{source_csv_prefix}}.txt
+          
+    - name: Build PHP IPAM Subnet Import file
+      template:
+          src=templates/phpipam_subnet.j2
+          dest=configs/{{source_csv_prefix}}-subnet.csv 
+
+    - name: Build PHP IPAM IP Address Import file
+      template:
+          src=templates/phpipam_ipaddress.j2
+          dest=configs/{{source_csv_prefix}}-ipaddress.csv
+
+    - mail:
+        host: "{{smtphost}}"
+        port: 25
+        from: "{{email}}"
+        to: "{{email}}"
+        subject: "{{source_csv_prefix}} RPHY Configs"
+        body: 'RPHY Config Results attached'
+        attach:
+        - configs/dhcp-{{source_csv_prefix}}.txt
+        - configs/{{source_csv_prefix}}.txt
+        - configs/{{source_csv_prefix}}-subnet.csv
+        - configs/{{source_csv_prefix}}-ipaddress.csv
