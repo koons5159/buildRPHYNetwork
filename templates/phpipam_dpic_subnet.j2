@@ -1,4 +1,4 @@
 Section,Subnet,Description,VLAN,VLAN Domain,VRF
 {% for row in csv_data %}
-SECTV,{{row.prefix}},{{cbr8name}} {{row.primdpicint}}/{{row.backdpicint}} to {{row.primarydevice]]/{row.{backupdevice}} {{row.cinint}},,,
+SECTV,{{row.subnet}},{{cbr8name}} {{row.primdpicint}}/{{row.backdpicint}} to {{row.primarydevice]]/{row.{backupdevice}} {{row.cinint}},,,
 {% endfor -%}  
