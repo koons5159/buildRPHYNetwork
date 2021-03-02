@@ -17,13 +17,6 @@ vrf forwarding {{row.vrf}}
 ip address {{row.subnet | next_nth_usable(2)}} {{row.subnet | ipaddr('netmask')}}
 cdp enable
 !
-{% endfor -%}  
-{% for row in csv_data %}
-{#Build all the Backup DPIC interfaces(Odds)#}
-interface {{row.backdpicint}}
-description 10GB Link to {{row.primarydevice}} {{row.backdpicint}}
-vrf forwarding {{row.vrf}}
-ip address {{row.subnet | next_nth_usable(2)}} {{row.subnet | ipaddr('netmask')}}
-cdp enable
-!
-{% endfor -%}  
+{% endfor -%} 
+
+{#Nothing to do for the odd intefaces#}
