@@ -1,1 +1,19 @@
-
+{#This tempate will build the config file for the CBR8 RPHY DPIC Interfaces and VRFs #}
+#File created {{cur_date}} by {{email}}
+{#First define all the VRFs #}
+{% for row in csv_data %}
+vrf definition {{row.vrf}}
+!
+ address-family ipv4
+ exit-address-family
+!
+{% endfor -%}  
+{#Build all the Primary DPIC interfaces(Evens)#}
+{% for row in csv_data %}
+interface {{row.dpicint}}
+description 10GB Link to device {{row.dpicint}}
+vrf forwarding {{row.vrf}}
+ip address {{row.prefix | next_nth_usable(1)}} {{row.prefix | ipaddr('netmask')}}
+cdp enable
+!
+{% endfor -%}  
