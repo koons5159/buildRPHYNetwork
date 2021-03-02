@@ -1,4 +1,4 @@
-ip address,ip state,description,hostname,subnet
+Section,ip address,ip state,description,hostname,subnet
 {% for row in csv_data %}
-{{row.prefix | next_nth_usable(1)}},,{{row.description}},{{row.prefix}}
+SECTV,{{row.prefix | next_nth_usable(1)}},,{{row.description}},{{row.prefix}}
 {% endfor -%}  
