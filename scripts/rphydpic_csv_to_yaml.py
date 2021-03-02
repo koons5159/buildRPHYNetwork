@@ -13,7 +13,7 @@ with open(sys.argv[1] + '.yml', "w") as my_output_file:
                     my_output_file.write("   primdpicint: \'" +(row[1])+ "\'\n")
                     my_output_file.write("   backupdpicint: \'" +(row[2])+ "\'\n")
                     my_output_file.write("   vrf: \'" +(row[3])+ "\'\n")
-                    my_output_file.write("   cinint \'" +(row[4])+ "\'\n")
+                    my_output_file.write("   cinint: \'" +(row[4])+ "\'\n")
                     my_output_file.write("   primarydevice: \'" +(row[5])+ "\'\n")
                     my_output_file.write("   backupdevice: \'" +(row[6])+ "\'\n")
           my_output_file.close()
