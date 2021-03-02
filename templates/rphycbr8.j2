@@ -8,10 +8,18 @@ vrf definition {{row.vrf}}
  exit-address-family
 !
 {% endfor -%}  
-{#Build all the Primary DPIC interfaces(Evens)#}
+{#Build all the CBR8 DPIC interfaces#}
 {% for row in csv_data %}
-interface {{row.dpicint}}
-description 10GB Link to device {{row.dpicint}}
+{#Build all the Primary DPIC interfaces(Evens)#}
+interface {{row.primdpicint}}
+description 10GB Link to device {{row.primdpicint}}
+vrf forwarding {{row.vrf}}
+ip address {{row.prefix | next_nth_usable(1)}} {{row.prefix | ipaddr('netmask')}}
+cdp enable
+!
+{#Build all the Backup DPIC interfaces(Odds)#}
+interface {{row.backdpicint}}
+description 10GB Link to device {{row.backdpicint}}
 vrf forwarding {{row.vrf}}
 ip address {{row.prefix | next_nth_usable(1)}} {{row.prefix | ipaddr('netmask')}}
 cdp enable
